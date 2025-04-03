@@ -1,0 +1,95 @@
+:root{
+    --main: #011638;
+    --sec: #fe5e41;
+    --acc: #721121;
+    --acc-o: rgba(114, 17, 33, 0.7);
+    --sec-o:rgba(231, 72, 44, 0.8);
+    --main-o: rgba(9, 47, 108, 0.6);
+}
+
+.colorMain{
+    color: var(--main);
+}
+
+.colorSec{
+    color: var(--sec);
+}
+
+.colorAcc{
+    color: var(--acc);
+}
+
+* {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Roboto", sans-serif;
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+    background-color: #011638;
+    color: white;
+}
+
+.mainContent{
+    padding-top: 70px;
+}
+
+/* inizio card game */
+
+.cardCustom {
+    background-color: var(--sec-o) !important;
+    height: 290px;
+    width: 18rem;
+    box-shadow: 3px 3px 5px white;
+    margin-top: 20px;
+}
+
+.btnCard{
+    background: var(--acc) !important;
+    color: white;
+    border: none !important;
+}
+
+.btnCard:hover{
+    box-shadow: 0px 0px 10px var(--acc);
+    color: white;
+    
+}
+
+.game-card {
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+/* fine card game */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
