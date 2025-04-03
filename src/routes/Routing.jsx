@@ -4,7 +4,7 @@ import Homepage from "../pages/homepage/Homepage";
 import ErrorPage from "../pages/error/Error";
 import GenrePage from "../pages/genrePage/GenrePage";
 import GamePage from "../pages/gamePage/GamePage";
-import SearchPage from "../pages/searchpage/searchPage";
+import SearchPage from "../pages/searchpage/SearchPage";
 import RegisterPage from "../pages/register/RegisterPage";
 import LoginPage from "../pages/login/LoginPage";
 import AccountPage from "../pages/account/AccountPage";
