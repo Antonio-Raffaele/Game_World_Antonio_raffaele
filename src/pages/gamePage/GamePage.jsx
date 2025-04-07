@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import LazyLoadGameImage from "../../components/LazyLoadGameImage";
 import useFetchSolution from "../../hook/useFetchSolution";
 import ToggleFavorite from "../../components/ToogleFavorite";
+import Chatbox from "../../components/Chatbox";
 
 export default function GamePage() {
     const { id } = useParams();
@@ -47,6 +48,10 @@ export default function GamePage() {
 
                 <Col xs={12} sm={6} md={6} lg={3} className="mb-4">
                     <ToggleFavorite data={data} />
+                </Col>
+
+                <Col xs={12} sm={6} md={6} lg={3} className="mb-4">
+                <Chatbox data={data && data} />
                 </Col>
             </Row>
         </Container>

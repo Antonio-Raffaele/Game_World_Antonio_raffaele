@@ -12,7 +12,7 @@ export default function ToggleFavorite({ data }) {
     return (
         <>
             {isFavorite() ? (
-                <Button variant="danger" onClick={() => removeFavorite(data)}>
+                <Button variant="danger" onClick={() => removeFavorite(data.id)}>
                     <FaHeart /> Rimuovi dai preferiti
                 </Button>) : (
                 <Button variant="outline-danger" onClick={() => addFavorites(data)}>
