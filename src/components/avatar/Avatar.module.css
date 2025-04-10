@@ -1,0 +1,11 @@
+.avatarImage {
+    box-shadow: 3px 3px 8px black;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.noImage {
+    background-color: #8b9094;
+    border-radius: 50%;
+}
+

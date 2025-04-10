@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import SessionContext from "../context/SessionContext";
 import supabase from "../supabase/supabase-client";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import RealtimeChat from "./realtimeChat/RealtimeChat";
 
 export default function Chatbox({data}){
 
@@ -24,7 +25,7 @@ export default function Chatbox({data}){
             ])
             .select()
             if (error) {
-                console.log(error);
+                console.error(error);
                 
             } else {
                 inputMessage.reset();
@@ -33,20 +34,40 @@ export default function Chatbox({data}){
     }
 
     return (
-        <>
-        <h4>Gamers chat</h4>
-        <div></div>
-        <div>
-        <Form className="mainContent" onSubmit={handleMessageSubmit}>
-            <Form.Group className="mb-3">
-                <Form.Control type="text" placeholder="Inserisci messaggio"/>
-            </Form.Group>
+        <Container className="py-4">
+            <Row className="mb-4">
+                <Col>
+                    <h4 className="text-center">Gamers Chat</h4>
+                </Col>
+            </Row>
 
-            <Button variant="primary" type="submit">
-                Invia
-            </Button>
-        </Form>
-        </div>
-        </>
+            <Row className="justify-content-center mb-4">
+                <Col xs={12} md={10} lg={8}>
+                    <div className="p-1 rounded bg-light">
+                        <RealtimeChat data={data} />
+                    </div>
+                </Col>
+            </Row>
+
+            <Row className="justify-content-center">
+                <Col xs={12} md={10} lg={8}>
+                    <Form className="mt-3" onSubmit={handleMessageSubmit}>
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="text"
+                                name="message"
+                                placeholder="Inserisci messaggio"
+                                autoComplete="off"
+                            />
+                        </Form.Group>
+                        <div>
+                            <Button variant="primary" type="submit">
+                                Invia
+                            </Button>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     )
 }

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import SessionContext from "../../context/SessionContext";
 import supabase from "../../supabase/supabase-client";
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar/Avatar";
 import ProfilePage from "../../components/ProfilePage";
 
 export default function AccountPage() {
@@ -85,10 +85,16 @@ export default function AccountPage() {
     if (!user) return <p>Loading session...</p>;
 
     return (
-        <Container className="mainContent">
-            <Row>
-                <h2>Profile Settings</h2>
+
+        <Container className="mainContent py-4">
+            <Row className="mb-4">
                 <Col>
+                    <h2 className="text-center text-md-start">Profile Settings</h2>
+                </Col>
+            </Row>
+
+            <Row className="justify-content-center">
+                <Col xs={12} md={6} lg={5}>
                     {successMessage && (
                         <Alert variant="success" className="mt-2">
                             {successMessage}
@@ -96,21 +102,23 @@ export default function AccountPage() {
                     )}
 
                     <Form onSubmit={updateProfile} noValidate>
-                        <Avatar
-                            url={avatar_url}
-                            size={150}
-                            onUpload={(_, url) => {
-                                setAvatarUrl(url);
-                            }}
-                        />
+                        <div className="text-center mb-4">
+                            <Avatar
+                                url={avatar_url}
+                                size={150}
+                                onUpload={(_, url) => {
+                                    setAvatarUrl(url);
+                                }}
+                            />
+                        </div>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control value={user.email} type="email" readOnly />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicFirstName">
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label>Nome</Form.Label>
                             <Form.Control
                                 type="text"
                                 value={first_name || ""}
@@ -119,7 +127,7 @@ export default function AccountPage() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicLastName">
-                            <Form.Label>Last Name</Form.Label>
+                            <Form.Label>Cognome</Form.Label>
                             <Form.Control
                                 type="text"
                                 value={last_name || ""}
@@ -137,14 +145,16 @@ export default function AccountPage() {
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" disabled={loading}>
-                            {loading ? "Loading..." : "Update"}
-                        </Button>
+                        <div>
+                            <Button variant="primary" type="submit" disabled={loading}>
+                                {loading ? "Carico..." : "Modifica"}
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
 
-                <Col>
-                <ProfilePage/>
+                <Col xs={12} md={6} lg={5} className="mt-5 mt-md-0">
+                    <ProfilePage />
                 </Col>
             </Row>
         </Container>

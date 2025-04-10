@@ -9,29 +9,29 @@
     color: var(--main);
 }
 
-.genreList {
+.platformList {
     list-style-type: none; 
     padding: 0;
     margin: 0;
 }
 
-.genreItem {
+.platformItem {
     padding: 10px;
 }
 
-.genreLink {
+.platformLink {
     color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
 }
 
-.genreItem:hover {
+.platformItem:hover {
     background-color: var(--acc-o);
     border-radius: 5px;
 }
 
-.genreLink:hover {
+.platformLink:hover {
     color: var(--sec); 
     text-shadow: 0px 0px 10px var(--acc);
 }

@@ -1,20 +1,21 @@
-import { useSearchParams } from "react-router";
-import useFetchSolution from "../../hook/useFetchSolution";
 import { useEffect } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import CardGame from "../../components/CardGame";
+import useFetchSolution from "../../hook/useFetchSolution";
+import styles from "../platformPage/PlatformPage.module.css";
 
-export default function SearchPage() {
-    let [searchParams] = useSearchParams();
-    const game = searchParams.get("query");
-
-    const initialUrl = `https://api.rawg.io/api/games?key=ed7b95eb8af6434283c6c6f7dc948c58&search=${game}`;
-
-    const { loading, data, error, updateUrl } = useFetchSolution(initialUrl);
+export default function PlatformPage() {
+    const { platformId } = useParams();
+    const url = `https://api.rawg.io/api/games?key=ed7b95eb8af6434283c6c6f7dc948c58&platforms=${platformId}&page=1`;
+    
+    
+    const { data, loading, error, updateUrl } = useFetchSolution(url);
 
     useEffect(() => {
-        updateUrl(initialUrl);
-    }, [initialUrl, updateUrl]);
+        updateUrl(url);
+    }, [platformId]);
+
 
     if (loading) {
         return (
@@ -35,23 +36,18 @@ export default function SearchPage() {
         <Container fluid className="mainContent py-4">
             <Row className="mb-4">
                 <Col>
-                    <h1 className="text-center my-4">Risultati per: {game}</h1>
+                    <h1 className={`text-center ${styles.platformTitle}`}>Giochi per piattaforma ID: {platformId}</h1>
                     {error && <p className="text-danger text-center">{error}</p>}
                 </Col>
             </Row>
 
             <Row className="justify-content-center">
                 {data && data.results.map((game) => (
-                    <Col
-                        key={game.id}
-                        xs={12} sm={6} md={4} lg={3}
-                        className="mb-4 d-flex justify-content-center"
-                    >
+                    <Col key={game.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex justify-content-center">
                         <CardGame game={game} />
                     </Col>
                 ))}
             </Row>
         </Container>
-    )
+    );
 }
-

@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@foxeian/react-read-more": "^1.1.5",
     "@supabase/supabase-js": "^2.49.4",
     "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.13",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",

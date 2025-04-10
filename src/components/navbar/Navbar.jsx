@@ -5,7 +5,7 @@ import styles from "./Navbar.module.css";
 import { useContext, useEffect, useState} from 'react';
 import supabase from '../../supabase/supabase-client';
 import SessionContext from "../../context/SessionContext";
-import logo from "../../MEDIA/logo.png"
+import logo from "../../MEDIA/logo.png";
 
 export default function NavbarScroll() {
 
@@ -32,15 +32,15 @@ export default function NavbarScroll() {
 
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
-        if (error) console.log(error);
-        alert('Signed out')
+        if (error) console.error(error);
+        alert('Logout avvenuto')
         navigate('/');
     }
 
 
     return (
-        <Navbar expand="lg" className={`fixed-top ${isScrolled ? styles.navCustom : ''}`}>
-            <Container fluid>
+        <Navbar expand="lg" className={`fixed-top ${styles.navbar} ${isScrolled ? styles.navCustom : ''}`}>
+            <Container >
                 <Navbar.Brand as={Link} to="/">
                 <img src={logo} alt="" style={{ height: '60px', width: '60px' }} />
                 </Navbar.Brand>

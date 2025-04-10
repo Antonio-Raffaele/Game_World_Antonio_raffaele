@@ -5,9 +5,9 @@ import {
     getErrors,
     getFieldError,
 } from "../lib/validationForm";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import supabase from "../supabase/supabase-client";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 
 export default function LoginForm() {
@@ -34,9 +34,9 @@ export default function LoginForm() {
                 password: data.password,
             });
             if (error) {
-                alert("Signing in error 👎🏻!");
+                alert("Login fallito 👎🏻!");
             } else {
-                alert("Signed in 👍🏻!");
+                alert("Login avvenuto con successo 👍🏻!");
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 navigate("/");
             }
@@ -64,23 +64,53 @@ export default function LoginForm() {
     };
 
     return (
-        <Form className="mainContent" onSubmit={onSubmit} noValidate>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Inserisci email" value={formState.email} onChange={setField("email")} onBlur={onBlur("email")} aria-invalid={isInvalid("email")} required />
-                {formErrors.email && <small>{formErrors.email}</small>}
-            </Form.Group>
+        <Container fluid className="mainContent py-5">
+            <Row className="justify-content-center">
+                <Col xs={12} sm={10} md={8} lg={6} xl={5}>
+                    <Form onSubmit={onSubmit} noValidate>
+                        <h2 className="text-center mb-4">Accedi</h2>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formState.password} onChange={setField("password")} onBlur={onBlur("password")} aria-invalid={isInvalid("password")} required />
-                {formErrors.password && <small>{formErrors.password}</small>}
-            </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Inserisci email"
+                                value={formState.email}
+                                onChange={setField("email")}
+                                onBlur={onBlur("email")}
+                                aria-invalid={isInvalid("email")}
+                                required
+                            />
+                            {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
+                        </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Accedi
-            </Button>
-        </Form>
+                        <Form.Group className="mb-4" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={formState.password}
+                                onChange={setField("password")}
+                                onBlur={onBlur("password")}
+                                aria-invalid={isInvalid("password")}
+                                required
+                            />
+                            {formErrors.password && <small className="text-danger">{formErrors.password}</small>}
+                        </Form.Group>
+
+                        <div>
+                            <Button variant="primary" type="submit">
+                                Accedi
+                            </Button>
+                        </div>
+
+                        <div className="text-center mt-3">
+                            <p>Non sei ancora registrato? <Link to="/register">Registrati</Link></p>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

@@ -8,6 +8,7 @@ import SearchPage from "../pages/searchpage/SearchPage";
 import RegisterPage from "../pages/register/RegisterPage";
 import LoginPage from "../pages/login/LoginPage";
 import AccountPage from "../pages/account/AccountPage";
+import PlatformPage from "../pages/platformPage/platformPage";
 
 export default function Routing() {
     return (
@@ -17,6 +18,7 @@ export default function Routing() {
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/" element={<Homepage />} />
                     <Route path="/games/:genre" element={<GenrePage />} />
+                    <Route path="/platforms/:platformId" element={<PlatformPage />} /> 
                     <Route path="/games/:slug/:id" element={<GamePage />} />
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/register" element={<RegisterPage />}/>
@@ -27,3 +29,4 @@ export default function Routing() {
         </BrowserRouter>
     )
 }
+

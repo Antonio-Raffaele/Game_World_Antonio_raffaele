@@ -1,0 +1,5 @@
+.homeTitle {
+    text-shadow: 0 0 15px white;
+    color: var(--sec);
+    margin-top: 50px;
+}

@@ -1,12 +1,16 @@
-/* .sidebar {
-    padding: 1rem;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    margin-top: 80px; 
-    background-color: #011638;
+.sidebarWrapper {
+    margin-top: 130px;
+    background: linear-gradient(180deg, #011638 0%, rgba(9, 47, 108, 0.6) 100%);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+    max-height: 100%;
+    width: 100%;
 }
 
-.sidebar h5 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-} */
+h5 {
+    font-size: 1.5rem;    
+    font-weight: bold;   
+    color: var(--sec);  
+    text-shadow: 1px 1px 2px white;        
+}

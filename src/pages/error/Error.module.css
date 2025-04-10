@@ -1,0 +1,20 @@
+.errorPageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.errorTitle {
+    font-size: 80px;
+    color: #ff4d4d;
+}
+
+.errorText {
+    font-size: 24px;
+    color: #666;
+}
+
+.homeLink {
+    font-size: 20px;
+}

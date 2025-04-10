@@ -4,9 +4,9 @@ import {
     getErrors,
     getFieldError,
 } from "../lib/validationForm";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import supabase from "../supabase/supabase-client";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 
 export default function RegisterForm() {
@@ -30,7 +30,6 @@ export default function RegisterForm() {
         if (error) {
             const errors = getErrors(error);
             setFormErrors(errors);
-            // console.log(errors);
         } else {
             let { error } = await supabase.auth.signUp({
                 email: data.email,
@@ -44,9 +43,9 @@ export default function RegisterForm() {
                 }
             });
             if (error) {
-                alert("Signing up error 👎🏻!");
+                alert("Registrazione fallita 👎🏻!");
             } else {
-                alert("Signed up 👍🏻!");
+                alert("Registrazione avvenuta con successo 👍🏻!");
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 navigate("/");
             }
@@ -74,44 +73,57 @@ export default function RegisterForm() {
     };
 
     return (
-        <Form className="mainContent" onSubmit={onSubmit} noValidate>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Inserisci email" value={formState.email} onChange={setField("email")} onBlur={onBlur("email")} aria-invalid={isInvalid("email")} required />
-                {formErrors.email && <small>{formErrors.email}</small>}
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicFirstName">
-                <Form.Label>First name</Form.Label>
-                <Form.Control type="text" placeholder="Nome" value={formState.firstName} onChange={setField("firstName")} onBlur={onBlur("firstName")}
-                    aria-invalid={isInvalid("firstName")} required />
-                {formErrors.firstName && <small>{formErrors.firstName}</small>}
-            </Form.Group>
+        <Container fluid>
+            <Row className="justify-content-center">
+                <Col xs={12} sm={10} md={8} lg={6} xl={5}>
+                    <Form className="mainContent" onSubmit={onSubmit} noValidate>
+                    <h2 className="text-center mb-4">Registrati</h2>
 
-            <Form.Group className="mb-3" controlId="formBasicLastName">
-                <Form.Label>Last name</Form.Label>
-                <Form.Control type="text" placeholder="Cognome" value={formState.lastName}
-                    onChange={setField("lastName")} onBlur={onBlur("lastName")} aria-invalid={isInvalid("lastName")} required />
-                {formErrors.lastName && <small>{formErrors.lastName}</small>}
-            </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" placeholder="Inserisci email" value={formState.email} onChange={setField("email")} onBlur={onBlur("email")} aria-invalid={isInvalid("email")} required />
+                            {formErrors.email && <small>{formErrors.email}</small>}
+                        </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Username" value={formState.username}
-                    onChange={setField("username")} onBlur={onBlur("username")} aria-invalid={isInvalid("username")} required />
-                {formErrors.username && <small>{formErrors.username}</small>}
-            </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicFirstName">
+                            <Form.Label>Nome</Form.Label>
+                            <Form.Control type="text" placeholder="Nome" value={formState.firstName} onChange={setField("firstName")} onBlur={onBlur("firstName")}
+                                aria-invalid={isInvalid("firstName")} required />
+                            {formErrors.firstName && <small>{formErrors.firstName}</small>}
+                        </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formState.password} onChange={setField("password")} onBlur={onBlur("password")} aria-invalid={isInvalid("password")} required />
-                {formErrors.password && <small>{formErrors.password}</small>}
-            </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicLastName">
+                            <Form.Label>Cognome</Form.Label>
+                            <Form.Control type="text" placeholder="Cognome" value={formState.lastName}
+                                onChange={setField("lastName")} onBlur={onBlur("lastName")} aria-invalid={isInvalid("lastName")} required />
+                            {formErrors.lastName && <small>{formErrors.lastName}</small>}
+                        </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Registrati
-            </Button>
-        </Form>
+                        <Form.Group className="mb-3" controlId="formBasicUsername">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" placeholder="Username" value={formState.username}
+                                onChange={setField("username")} onBlur={onBlur("username")} aria-invalid={isInvalid("username")} required />
+                            {formErrors.username && <small>{formErrors.username}</small>}
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" value={formState.password} onChange={setField("password")} onBlur={onBlur("password")} aria-invalid={isInvalid("password")} required />
+                            {formErrors.password && <small>{formErrors.password}</small>}
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">
+                            Registrati
+                        </Button>
+
+                        <div className="text-center mt-3">
+                            <p>Sei già registrato? <Link to="/login">Registrati</Link></p>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

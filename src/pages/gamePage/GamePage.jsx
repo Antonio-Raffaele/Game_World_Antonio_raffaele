@@ -5,6 +5,7 @@ import LazyLoadGameImage from "../../components/LazyLoadGameImage";
 import useFetchSolution from "../../hook/useFetchSolution";
 import ToggleFavorite from "../../components/ToogleFavorite";
 import Chatbox from "../../components/Chatbox";
+import ReadMoreArea from "@foxeian/react-read-more";
 
 export default function GamePage() {
     const { id } = useParams();
@@ -20,38 +21,55 @@ export default function GamePage() {
 
     if (loading) {
         return (
-            <div className="container text-center">
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Sto caricando i dati</span>
-                </Spinner>
-            </div>
+            <Container fluid className="mainContent mt-5 text-center">
+            <Row className="justify-content-center">
+                <Col xs="auto">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Sto caricando i dati</span>
+                    </Spinner>
+                    <p className="mt-3">Sto caricando i dati...</p>
+                </Col>
+            </Row>
+        </Container>
         );
     }
 
     return (
-        <Container fluid className="mainContent text-white">
-            <h1 className="text-center my-4">Pagina del titolo: {data && data.name}</h1>
-            {error && <p className="text-danger">{error}</p>}
+        <Container fluid className="mainContent text-white py-4">
+            <Row className="mb-4">
+                <Col>
+                    <h1 className="text-center">Pagina del titolo: {data && data.name}</h1>
+                    {error && <p className="text-danger text-center">{error}</p>}
+                </Col>
+            </Row>
 
-            <Row>
-                <Col xs={12} sm={6} md={4} lg={4} className="mb-4">
-                    <p><strong>Data di rilascio:</strong> {data && data.released}</p>
+            <Row className="gy-4">
+                <Col xs={12} md={6} lg={6}>
                     <h2>{data && data.name}</h2>
+                    <p><strong>Data di rilascio:</strong> {data && data.released}</p>
                     <p><strong>Rating:</strong> {data && data.rating}</p>
                     <p><strong>Descrizione:</strong></p>
-                    <p>{data && data.description_raw}</p>
+                    <ReadMoreArea
+                        lettersLimit={500}
+                        expandLabel="Leggi di più"
+                        collapseLabel="Leggi di meno"
+                    >
+                        {data && data.description_raw}
+                    </ReadMoreArea>
                 </Col>
 
-                <Col xs={12} sm={6} md={6} lg={3} className="mb-4">
-                    <LazyLoadGameImage image={data && data.background_image} />
-                </Col>
-
-                <Col xs={12} sm={6} md={6} lg={3} className="mb-4">
-                    <ToggleFavorite data={data} />
-                </Col>
-
-                <Col xs={12} sm={6} md={6} lg={3} className="mb-4">
-                <Chatbox data={data && data} />
+                <Col xs={12} md={6} lg={6}>
+                    <Row className="gy-4">
+                        <Col xs={12}>
+                            <LazyLoadGameImage image={data && data.background_image} />
+                        </Col>
+                        <Col xs={12}>
+                            <ToggleFavorite data={data} />
+                        </Col>
+                        <Col xs={12}>
+                            <Chatbox data={data} />
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>

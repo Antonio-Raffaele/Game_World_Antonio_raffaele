@@ -7,18 +7,6 @@
     --main-o: rgba(9, 47, 108, 0.6);
 }
 
-.colorMain{
-    color: var(--main);
-}
-
-.colorSec{
-    color: var(--sec);
-}
-
-.colorAcc{
-    color: var(--acc);
-}
-
 * {
     font-family: "Rajdhani", sans-serif;
     font-weight: 500;
@@ -37,6 +25,7 @@ h1,h2,h3,h4,h5,h6{
 
 .mainContent{
     padding-top: 70px;
+    margin-top: 90px;
 }
 
 /* inizio card game */
