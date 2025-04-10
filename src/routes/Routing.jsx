@@ -8,7 +8,7 @@ import SearchPage from "../pages/searchpage/SearchPage";
 import RegisterPage from "../pages/register/RegisterPage";
 import LoginPage from "../pages/login/LoginPage";
 import AccountPage from "../pages/account/AccountPage";
-import PlatformPage from "../pages/platformPage/platformPage";
+import PlatformPage from "../pages/platformPage/PlatformPage";
 
 export default function Routing() {
     return (
