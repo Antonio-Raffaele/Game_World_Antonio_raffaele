@@ -7,13 +7,14 @@ import styles from "../platformPage/PlatformPage.module.css";
 
 export default function PlatformPage() {
     const { platformId } = useParams();
-    const url = `https://api.rawg.io/api/games?key=ed7b95eb8af6434283c6c6f7dc948c58&platforms=${platformId}&page=1`;
-    
-    
-    const { data, loading, error, updateUrl } = useFetchSolution(url);
+
+    const initialUrl = `https://api.rawg.io/api/games?key=ed7b95eb8af6434283c6c6f7dc948c58&platforms=${platformId}&page=1`;
+
+
+    const { data, loading, error, updateUrl } = useFetchSolution(initialUrl);
 
     useEffect(() => {
-        updateUrl(url);
+        updateUrl(initialUrl);
     }, [platformId]);
 
 
@@ -43,7 +44,10 @@ export default function PlatformPage() {
 
             <Row className="justify-content-center">
                 {data && data.results.map((game) => (
-                    <Col key={game.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex justify-content-center">
+                    <Col
+                        key={game.id}
+                        xs={12} sm={6} md={4} lg={3}
+                        className="mb-4 d-flex justify-content-center">
                         <CardGame game={game} />
                     </Col>
                 ))}
