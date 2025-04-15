@@ -118,7 +118,7 @@ export default function RegisterForm() {
                         </Button>
 
                         <div className="text-center mt-3">
-                            <p>Sei già registrato? <Link to="/login">Registrati</Link></p>
+                            <p>Sei già registrato? <Link to="/login">Accedi</Link></p>
                         </div>
                     </Form>
                 </Col>
